@@ -1,0 +1,50 @@
+" Syntax highlighting
+syntax on
+
+" Ruler
+set ruler
+
+" Line numbers on the left
+set nu
+
+" show incomplete commands
+set showcmd
+
+" shows a menu using tab completion
+set wildmenu
+
+" set number of lines to always have before/after cursor
+set scrolloff=5 
+
+" Search highlighting
+set hls
+
+" Enable autoindenting
+set ai
+
+" Enable smartindenting
+set si
+
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
+
+" Shift lines with tab/shift+tab in normal, visual and insert modes
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Automatically put closing curly bracket and auto indent cursor inside code block
+inoremap { {<CR>}<Esc>O
+
+" Sets the number of columns for a TAB
+set softtabstop=2
+
+" Automatically add closing bracket and put cursor inside
+:inoremap ( ()<Esc>i
+:inoremap [ []<Esc>i
+:inoremap < <><Esc>i
+
+" Macros for late text bracketing
+:vnoremap ∫ <Esc>`>a)<Esc>`<i(<Esc>%
