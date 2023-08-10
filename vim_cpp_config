@@ -35,16 +35,26 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-" Automatically put closing curly bracket and auto indent cursor inside code block
-inoremap { {<CR>}<Esc>O
-
 " Sets the number of columns for a TAB
 set softtabstop=2
 
 " Automatically add closing bracket and put cursor inside
 :inoremap ( ()<Esc>i
 :inoremap [ []<Esc>i
-:inoremap < <><Esc>i
+:inoremap " ""<Esc>i
+:inoremap ' ''<Esc>i
 
-" Macros for late text bracketing
-:vnoremap ∫ <Esc>`>a)<Esc>`<i(<Esc>%
+" Automatically add closing bracket on next line and put cursor inside
+:inoremap { {<CR>}<Esc>0ko
+" Automatically put closing curly bracket and auto indent cursor inside code block
+" inoremap { {<CR>}<Esc>O
+
+" Quit insert mode
+inoremap jj <Esc>
+
+" Ctrl+; to put ; at the end of line
+inoremap ;; <C-o>a;
+
+" Go to definition of a macOS lirary file
+" Usage: put cursor on a name of a header file to go to and type :Dm <cword> 
+:command! -nargs=1 Dm :tabe `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<args>*'`
