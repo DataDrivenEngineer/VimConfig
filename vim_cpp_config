@@ -1,4 +1,4 @@
-" Syntax highlighting
+" Syntax highlighting syntax on
 syntax on
 
 " Ruler
@@ -55,6 +55,7 @@ inoremap jj <Esc>
 " Ctrl+; to put ; at the end of line
 inoremap ;; <C-o>a;
 
+
 " Go to definition of a macOS lirary file
-" Usage: put cursor on a name of a header file to go to and type :Dm <cword> 
-:command! -nargs=1 Dm :tabe `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<args>*'`
+" Usage: put cursor on a name of a header file to go to and type :Dm
+:command! Dm :args `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<cword>.h'`
