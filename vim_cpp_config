@@ -38,11 +38,18 @@ vnoremap <S-Tab> <gv
 " Sets the number of columns for a TAB
 set softtabstop=2
 
-" Automatically add closing bracket and put cursor inside
+" Automatically add closing bracket/quote and put cursor inside
 :inoremap ( ()<Esc>i
 :inoremap [ []<Esc>i
 :inoremap " ""<Esc>i
 :inoremap ' ''<Esc>i
+
+" Still want to have a way to add single opening bracket/quote
+:inoremap (( (
+:inoremap [[ [
+:inoremap "" "
+:inoremap '' '
+:inoremap {{ {
 
 " Automatically add closing bracket on next line and put cursor inside
 :inoremap { {<CR>}<Esc>0ko
@@ -57,5 +64,6 @@ inoremap ;; <C-o>a;
 
 
 " Go to definition of a macOS lirary file
-" Usage: put cursor on a name of a header file to go to and type :Dm
+" Usage: put cursor on a name of a header file to go to and type :Dm (Dm stands for Definition macOS)
+" If multiple files are found, navigate between them with :n and :N
 :command! Dm :args `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<cword>.h'`
