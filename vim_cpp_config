@@ -29,8 +29,8 @@ set si
 set shiftwidth=2
 
 " Shift lines with tab/shift+tab in normal, visual and insert modes
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
+" nnoremap <Tab> >>_
+" nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
@@ -39,20 +39,20 @@ vnoremap <S-Tab> <gv
 set softtabstop=2
 
 " Automatically add closing bracket/quote and put cursor inside
-:inoremap ( ()<Esc>i
-:inoremap [ []<Esc>i
-:inoremap " ""<Esc>i
-:inoremap ' ''<Esc>i
+":inoremap ( ()<Esc>i
+":inoremap [ []<Esc>i
+":inoremap " ""<Esc>i
+":inoremap ' ''<Esc>i
 
 " Still want to have a way to add single opening bracket/quote
-:inoremap (( (
-:inoremap [[ [
-:inoremap "" "
-:inoremap '' '
+":inoremap (( (
+":inoremap [[ [
+":inoremap "" "
+":inoremap '' '
 :inoremap {{ {
 
 " Automatically add closing bracket on next line and put cursor inside
-:inoremap { {<CR>}<Esc>0ko
+:inoremap { {<CR>}<Esc>ko
 " Automatically put closing curly bracket and auto indent cursor inside code block
 " inoremap { {<CR>}<Esc>O
 
@@ -60,10 +60,32 @@ set softtabstop=2
 inoremap jj <Esc>
 
 " Ctrl+; to put ; at the end of line
-inoremap ;; <C-o>a;
+inoremap ;; <C-o>A;
 
+" Move cursor to right tab when opening new window in vertical split
+nnoremap <C-w>v <C-w>v<C-w>l
+
+" When Spacebar is pressed in normal mode, insert space at the previous position of cursor and move current character under cursor ahead by 1
+" nnoremap <Space> i<Space><Esc>l
+
+" Below is a group of mappings for late text bracketing. Uses marks to put brackets around selected text.
+
+" To use, put a cursor on the opening bracket and press <C-w> + opening bracket
+vnoremap <C-w>9 mao<Esc>i(<Esc>`ala)<Esc>
+vnoremap <C-w>[ mao<Esc>i[<Esc>`ala]<Esc>
+" To use, put a cursor on the opening bracket and press <C-w> + closing bracket
+vnoremap <C-w>0 mao<Esc>a)<Esc>`aha(<Esc><S-%>
+vnoremap <C-w>] mao<Esc>a]<Esc>`aha[<Esc><S-%>
+
+" Remove matching brackets. To use, put a cursor on the opening bracket of the pair that you want to remove and press <C-w> + d + 9
+nnoremap <C-w>d9 ma<S-%>x`ax
+
+" Open vertical split window on the right by default
+:set splitright
+" Run make from parent directory
+nnoremap <Space> :vert :term make -C .. build package<CR>
 
 " Go to definition of a macOS lirary file
-" Usage: put cursor on a name of a header file to go to and type :Dm (Dm stands for Definition macOS)
+" Usage: put cursor on a name of a header file to go to and type :DM (Dm stands for Definition macOS)
 " If multiple files are found, navigate between them with :n and :N
-:command! Dm :args `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<cword>.h'`
+:command! DM :args `find /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -type f -name '<cword>.h'`
